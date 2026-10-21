@@ -21,13 +21,13 @@
     {
       "matches": ["*://*.youtube.com/*"],
       "css": ["content/youtube.css"],
-      "js": ["settings.js", "content/youtube.js"],
+      "js": ["settings.js", "urls.js", "content/youtube.js"],
       "run_at": "document_start"
     },
     {
       "matches": ["*://*.facebook.com/*"],
       "css": ["content/facebook.css"],
-      "js": ["settings.js", "content/facebook.js"],
+      "js": ["settings.js", "urls.js", "content/facebook.js"],
       "run_at": "document_start"
     }
   ]
