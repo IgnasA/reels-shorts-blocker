@@ -15,6 +15,7 @@ const IG_LOOP_MS = 10000;
 
 let settings = { ...RSB_DEFAULTS };
 let lastUrl = "";
+let loaded = false;
 
 // Where to send a Reels page instead, or null to leave it alone.
 function igRedirectFor(path) {
@@ -48,7 +49,7 @@ function igHideReels() {
 }
 
 function igBlockReelPage() {
-  if (location.href === lastUrl) return;
+  if (!loaded || location.href === lastUrl) return;
   lastUrl = location.href;
   if (!settings.igBlockReelsPages) return;
   let target = igRedirectFor(location.pathname);
@@ -64,8 +65,9 @@ function igBlockReelPage() {
   location.replace(target);
 }
 
-rsbWatchSettings((next) => {
+rsbWatchSettings((next, fromStorage) => {
   settings = next;
+  loaded ||= fromStorage;
   rsbSetFlag("data-rsb-ig-reels", settings.igHideReels);
   lastUrl = "";
   igBlockReelPage();

@@ -4,6 +4,7 @@
 
 const SHORTS_PATH = /^\/shorts\/([\w-]+)/;
 let settings = { ...RSB_DEFAULTS };
+let loaded = false;
 
 function watchUrlFor(path) {
   const m = path.match(SHORTS_PATH);
@@ -11,7 +12,7 @@ function watchUrlFor(path) {
 }
 
 function redirectIfShorts() {
-  if (!settings.ytRedirectShorts) return;
+  if (!loaded || !settings.ytRedirectShorts) return;
   const url = watchUrlFor(location.pathname);
   if (url) location.replace(url);
 }
@@ -26,8 +27,9 @@ function hideShortsChips() {
   }
 }
 
-rsbWatchSettings((next) => {
+rsbWatchSettings((next, fromStorage) => {
   settings = next;
+  loaded ||= fromStorage;
   rsbSetFlag("data-rsb-yt-shorts", settings.ytHideShorts);
   redirectIfShorts();
 });

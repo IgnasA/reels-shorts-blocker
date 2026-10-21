@@ -13,6 +13,7 @@ const REEL_PAGE = /^\/(reel|reels)(\/|$)/;
 
 let settings = { ...RSB_DEFAULTS };
 let lastUrl = "";
+let loaded = false;
 
 // The block worth hiding for a Reels link: the whole feed post / "Reels" shelf,
 // the sidebar or tab entry, or failing that the card the link sits in.
@@ -33,13 +34,14 @@ function hideReels() {
 }
 
 function blockReelPage() {
-  if (location.href === lastUrl) return;
+  if (!loaded || location.href === lastUrl) return;
   lastUrl = location.href;
   if (settings.fbBlockReelsPages && REEL_PAGE.test(location.pathname)) location.replace("/");
 }
 
-rsbWatchSettings((next) => {
+rsbWatchSettings((next, fromStorage) => {
   settings = next;
+  loaded ||= fromStorage;
   rsbSetFlag("data-rsb-fb-reels", settings.fbHideReels);
   lastUrl = "";
   blockReelPage();
