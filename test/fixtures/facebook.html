@@ -1,0 +1,38 @@
+<!doctype html>
+<!-- Hand-written stand-in for Facebook's markup. Facebook needs a login to
+     show a feed, so this mirrors the structure the blocker relies on (roles,
+     data-pagelet, aria-posinset and link paths) rather than a live capture.
+     data-expect says what the test expects with "Hide Reels" on. -->
+<html lang="en">
+<head><meta charset="utf-8"><title>Facebook fixture</title></head>
+<body>
+<div role="banner">
+  <ul>
+    <li data-expect="visible" data-name="top nav Home"><a href="/">Home</a></li>
+    <li data-expect="hidden" data-name="top nav Reels"><a href="https://www.facebook.com/reels/">Reels</a></li>
+  </ul>
+</div>
+<div role="navigation">
+  <ul>
+    <li data-expect="visible" data-name="sidebar Friends"><a href="/friends/">Friends</a></li>
+    <li data-expect="hidden" data-name="sidebar Reels"><a href="/reel/?s=bookmark">Reels</a></li>
+  </ul>
+</div>
+<div role="main">
+  <div role="feed" id="feed">
+    <div data-expect="visible" data-name="feed post"><div><div><a href="/someone/posts/1">A normal post</a></div></div></div>
+    <div data-expect="hidden" data-name="feed post with a Reel"><div><div><a href="/reel/1234567890/">A Reel</a></div></div></div>
+    <div data-expect="hidden" data-name="feed Reels shelf"><div><span>Reels and short videos</span><a href="/reel/111/">1</a><a href="/reel/222/">2</a><a href="/reels/">See all</a></div></div>
+    <div data-expect="hidden" data-name="feed shared Reel link"><div><a href="https://www.facebook.com/share/r/AbCdEf123/">Shared</a></div></div>
+  </div>
+  <div data-pagelet="FeedUnit_9" data-expect="hidden" data-name="pagelet feed unit"><div><a href="/reel/333/">Reel</a></div></div>
+  <div aria-posinset="4" data-expect="hidden" data-name="aria-posinset post"><div><a href="/reel/444/">Reel</a></div></div>
+  <div role="tablist">
+    <div role="tab" data-expect="visible" data-name="profile tab Photos"><a href="/someone/photos">Photos</a></div>
+    <div role="tab" data-expect="hidden" data-name="profile tab Reels"><a href="/someone/reels">Reels</a></div>
+  </div>
+  <div role="article" data-expect="hidden" data-name="article with a Reel"><a href="/reel/555/">Reel</a></div>
+  <div role="article" data-expect="visible" data-name="article about reels"><a href="/groups/fishing-reels-fans/">Fishing reels club</a></div>
+</div>
+</body>
+</html>
