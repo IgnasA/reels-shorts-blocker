@@ -19,13 +19,13 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/*"],
+      "matches": ["https://*.youtube.com/*"],
       "css": ["content/youtube.css"],
       "js": ["settings.js", "content/youtube.js"],
       "run_at": "document_start"
     },
     {
-      "matches": ["*://*.facebook.com/*"],
+      "matches": ["https://*.facebook.com/*"],
       "css": ["content/facebook.css"],
       "js": ["settings.js", "content/facebook.js"],
       "run_at": "document_start"
