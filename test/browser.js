@@ -10,6 +10,7 @@ const { stage } = require("../scripts/package.js");
 
 const FIXTURES = path.join(__dirname, "fixtures");
 const extDir = stage(fs.mkdtempSync(path.join(os.tmpdir(), "rsb-ext-")));
+process.on("exit", () => fs.rmSync(extDir, { recursive: true, force: true }));
 
 // Chrome derives an unpacked extension's ID from its path.
 const extId = [...crypto.createHash("sha256").update(extDir).digest("hex").slice(0, 32)]
