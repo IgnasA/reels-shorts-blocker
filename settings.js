@@ -4,6 +4,8 @@ const RSB_DEFAULTS = {
   ytRedirectShorts: true,
   fbHideReels: true,
   fbBlockReelsPages: true,
+  igHideReels: true,
+  igBlockReelsPages: true,
 };
 
 // Calls `apply` with the defaults right away (so nothing flashes before

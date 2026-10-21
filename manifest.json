@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Reels & Shorts Blocker",
-  "version": "1.0.0",
-  "description": "Hides YouTube Shorts and Facebook Reels.",
+  "version": "1.1.0",
+  "description": "Hides YouTube Shorts, Facebook Reels and Instagram Reels.",
   "permissions": ["storage"],
   "icons": {
     "16": "icons/icon16.png",
@@ -28,6 +28,12 @@
       "matches": ["*://*.facebook.com/*"],
       "css": ["content/facebook.css"],
       "js": ["settings.js", "content/facebook.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["*://*.instagram.com/*"],
+      "css": ["content/instagram.css"],
+      "js": ["settings.js", "content/instagram.js"],
       "run_at": "document_start"
     }
   ]

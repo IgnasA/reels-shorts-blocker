@@ -1,0 +1,6 @@
+/* Active only while <html data-rsb-ig-reels> is set (see instagram.js).
+   Instagram's class names are obfuscated, so instagram.js finds Reels by
+   their links and marks the containing block with data-rsb-hidden. */
+html[data-rsb-ig-reels] [data-rsb-hidden] {
+  display: none !important;
+}
