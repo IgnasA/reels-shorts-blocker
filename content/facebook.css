@@ -1,0 +1,6 @@
+/* Active only while <html data-rsb-fb-reels> is set (see facebook.js).
+   Facebook's class names are obfuscated, so facebook.js finds Reels by their
+   links and marks the containing block with data-rsb-hidden. */
+html[data-rsb-fb-reels] [data-rsb-hidden] {
+  display: none !important;
+}

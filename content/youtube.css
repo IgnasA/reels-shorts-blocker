@@ -1,0 +1,45 @@
+/* Active only while <html data-rsb-yt-shorts> is set (see youtube.js). */
+
+/* Shorts shelves: home, subscriptions, search, watch sidebar */
+html[data-rsb-yt-shorts] ytd-reel-shelf-renderer,
+html[data-rsb-yt-shorts] ytd-rich-shelf-renderer[is-shorts],
+html[data-rsb-yt-shorts] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+html[data-rsb-yt-shorts] ytd-rich-section-renderer:has(ytm-shorts-lockup-view-model),
+html[data-rsb-yt-shorts] ytd-rich-section-renderer:has(ytm-shorts-lockup-view-model-v2),
+html[data-rsb-yt-shorts] grid-shelf-view-model:has(ytm-shorts-lockup-view-model),
+html[data-rsb-yt-shorts] grid-shelf-view-model:has(ytm-shorts-lockup-view-model-v2),
+html[data-rsb-yt-shorts] ytm-shorts-lockup-view-model,
+html[data-rsb-yt-shorts] ytm-shorts-lockup-view-model-v2,
+
+/* Individual videos that are Shorts */
+html[data-rsb-yt-shorts] ytd-rich-item-renderer:has(a[href^="/shorts/"]),
+html[data-rsb-yt-shorts] ytd-video-renderer:has(a[href^="/shorts/"]),
+html[data-rsb-yt-shorts] ytd-grid-video-renderer:has(a[href^="/shorts/"]),
+html[data-rsb-yt-shorts] ytd-compact-video-renderer:has(a[href^="/shorts/"]),
+html[data-rsb-yt-shorts] ytd-playlist-video-renderer:has(a[href^="/shorts/"]),
+html[data-rsb-yt-shorts] yt-lockup-view-model:has(a[href^="/shorts/"]),
+html[data-rsb-yt-shorts] ytd-video-renderer:has([overlay-style="SHORTS"]),
+html[data-rsb-yt-shorts] ytd-grid-video-renderer:has([overlay-style="SHORTS"]),
+html[data-rsb-yt-shorts] ytd-compact-video-renderer:has([overlay-style="SHORTS"]),
+
+/* Sidebar / mini-sidebar "Shorts" entry */
+html[data-rsb-yt-shorts] ytd-guide-entry-renderer:has(a[title="Shorts"]),
+html[data-rsb-yt-shorts] ytd-guide-entry-renderer:has(a[href^="/shorts"]),
+html[data-rsb-yt-shorts] ytd-mini-guide-entry-renderer[aria-label="Shorts"],
+html[data-rsb-yt-shorts] ytd-mini-guide-entry-renderer:has(a[href^="/shorts"]),
+
+/* Channel page "Shorts" tab */
+html[data-rsb-yt-shorts] yt-tab-shape[tab-title="Shorts"],
+
+/* Search filter chip, marked by youtube.js */
+html[data-rsb-yt-shorts] [data-rsb-hidden],
+
+/* Mobile site (m.youtube.com) */
+html[data-rsb-yt-shorts] ytm-reel-shelf-renderer,
+html[data-rsb-yt-shorts] ytm-pivot-bar-item-renderer:has(.pivot-shorts),
+html[data-rsb-yt-shorts] ytm-rich-item-renderer:has(a[href^="/shorts/"]),
+html[data-rsb-yt-shorts] ytm-video-with-context-renderer:has(a[href^="/shorts/"]),
+html[data-rsb-yt-shorts] ytm-rich-section-renderer:has(ytm-shorts-lockup-view-model),
+html[data-rsb-yt-shorts] ytm-rich-section-renderer:has(ytm-shorts-lockup-view-model-v2) {
+  display: none !important;
+}

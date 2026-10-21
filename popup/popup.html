@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Reels &amp; Shorts Blocker</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h1>Reels &amp; Shorts Blocker</h1>
+
+    <section>
+      <h2>YouTube</h2>
+      <label><span>Hide Shorts</span><input type="checkbox" data-key="ytHideShorts" /></label>
+      <label><span>Open Shorts in the normal player</span><input type="checkbox" data-key="ytRedirectShorts" /></label>
+    </section>
+
+    <section>
+      <h2>Facebook</h2>
+      <label><span>Hide Reels</span><input type="checkbox" data-key="fbHideReels" /></label>
+      <label><span>Block Reels pages</span><input type="checkbox" data-key="fbBlockReelsPages" /></label>
+    </section>
+
+    <p class="note">Changes apply instantly to open tabs.</p>
+
+    <script src="../settings.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
