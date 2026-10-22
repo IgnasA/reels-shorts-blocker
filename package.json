@@ -6,7 +6,8 @@
     "test": "node --test test/*.test.js",
     "test:unit": "node --test test/urls.test.js test/manifest.test.js test/redirects.test.js test/instagram.test.js",
     "test:smoke": "node tests/smoke.js",
-    "package": "node scripts/package.js"
+    "package": "node scripts/package.js",
+    "store:images": "node scripts/store-images.js"
   },
   "devDependencies": {
     "jsdom": "^26.1.0",

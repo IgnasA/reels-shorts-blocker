@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- Stand-in for a video site's home page, used only to render the store
+     screenshots (scripts/store-images.js). It reuses the element names the
+     extension's YouTube rules key off, with made-up channels and no logos. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.35 Inter, sans-serif; color: #0f0f0f; background: #fff; }
+  ytd-rich-item-renderer, ytd-rich-shelf-renderer, ytd-guide-entry-renderer, yt-chip-cloud-chip-renderer { display: block; }
+  a { color: inherit; text-decoration: none; }
+  header { display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-bottom: 1px solid #eee; }
+  .burger { width: 20px; height: 14px; border-top: 2px solid #333; border-bottom: 2px solid #333; position: relative; }
+  .burger::after { content: ""; position: absolute; left: 0; right: 0; top: 4px; border-top: 2px solid #333; }
+  .site { font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+  .search { flex: 1; max-width: 420px; height: 36px; margin: 0 auto; border: 1px solid #ccc; border-radius: 18px; padding: 0 16px; display: flex; align-items: center; color: #888; }
+  .me { width: 30px; height: 30px; border-radius: 50%; background: #7b61ff; }
+  .layout { display: flex; }
+  nav { width: 150px; padding: 10px 8px; flex: none; }
+  ytd-guide-entry-renderer a { display: flex; align-items: center; gap: 14px; padding: 9px 12px; border-radius: 10px; }
+  ytd-guide-entry-renderer:first-child a { background: #f2f2f2; font-weight: 600; }
+  .ico { width: 18px; height: 18px; border-radius: 5px; background: #444; flex: none; }
+  main { flex: 1; padding: 12px 20px 0 8px; min-width: 0; }
+  .chips { display: flex; gap: 10px; margin-bottom: 18px; }
+  yt-chip-cloud-chip-renderer { padding: 6px 12px; border-radius: 8px; background: #f2f2f2; font-weight: 500; }
+  yt-chip-cloud-chip-renderer:first-child { background: #0f0f0f; color: #fff; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 14px; }
+  .thumb { aspect-ratio: 16 / 9; border-radius: 10px; position: relative; }
+  .dur { position: absolute; right: 6px; bottom: 6px; background: rgba(0,0,0,.8); color: #fff; font-size: 11px; padding: 1px 4px; border-radius: 4px; }
+  .meta { display: flex; gap: 10px; margin-top: 10px; }
+  .av { width: 32px; height: 32px; border-radius: 50%; flex: none; }
+  .title { font-weight: 600; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .sub { color: #606060; font-size: 12.5px; margin-top: 2px; }
+  ytd-rich-shelf-renderer { grid-column: 1 / -1; padding: 6px 0 4px; }
+  .shelf-title { font-weight: 700; font-size: 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .shelf-title i { width: 18px; height: 22px; border-radius: 5px; background: #ff3d6a; display: inline-block; }
+  .shorts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .short .thumb { aspect-ratio: 9 / 16; }
+  .short .title { margin-top: 8px; }
+</style>
+</head>
+<body>
+<header><div class="burger"></div><div class="site">Video site</div><div class="search">Search</div><div class="me"></div></header>
+<div class="layout">
+  <nav>
+    <ytd-guide-entry-renderer><a href="/" title="Home"><span class="ico"></span>Home</a></ytd-guide-entry-renderer>
+    <ytd-guide-entry-renderer><a href="/shorts/" title="Shorts"><span class="ico" style="background:#ff3d6a"></span>Shorts</a></ytd-guide-entry-renderer>
+    <ytd-guide-entry-renderer><a href="/feed/subscriptions" title="Subscriptions"><span class="ico"></span>Subscriptions</a></ytd-guide-entry-renderer>
+    <ytd-guide-entry-renderer><a href="/feed/you" title="You"><span class="ico"></span>You</a></ytd-guide-entry-renderer>
+  </nav>
+  <main>
+    <div class="chips">
+      <yt-chip-cloud-chip-renderer>All</yt-chip-cloud-chip-renderer>
+      <yt-chip-cloud-chip-renderer>Shorts</yt-chip-cloud-chip-renderer>
+      <yt-chip-cloud-chip-renderer>Music</yt-chip-cloud-chip-renderer>
+      <yt-chip-cloud-chip-renderer>Cooking</yt-chip-cloud-chip-renderer>
+      <yt-chip-cloud-chip-renderer>Live</yt-chip-cloud-chip-renderer>
+    </div>
+    <div class="grid">
+      <ytd-rich-item-renderer><a href="/watch?v=aaaaaaaaaa1"><div class="thumb" style="background:linear-gradient(135deg,#3a7bd5,#00d2ff)"><span class="dur">18:42</span></div></a>
+        <div class="meta"><div class="av" style="background:#3a7bd5"></div><div><div class="title">A slow morning hike above the clouds</div><div class="sub">Trail Notes · 84K views · 2 days ago</div></div></div></ytd-rich-item-renderer>
+      <ytd-rich-item-renderer><a href="/watch?v=aaaaaaaaaa2"><div class="thumb" style="background:linear-gradient(135deg,#f7971e,#ffd200)"><span class="dur">12:05</span></div></a>
+        <div class="meta"><div class="av" style="background:#f7971e"></div><div><div class="title">Sourdough from scratch, explained step by step</div><div class="sub">Crumb Club · 210K views · 1 week ago</div></div></div></ytd-rich-item-renderer>
+      <ytd-rich-item-renderer><a href="/watch?v=aaaaaaaaaa3"><div class="thumb" style="background:linear-gradient(135deg,#11998e,#38ef7d)"><span class="dur">24:10</span></div></a>
+        <div class="meta"><div class="av" style="background:#11998e"></div><div><div class="title">Building a tiny garden on a city balcony</div><div class="sub">Green Corner · 51K views · 3 weeks ago</div></div></div></ytd-rich-item-renderer>
+      <ytd-rich-shelf-renderer is-shorts>
+        <div class="shelf-title"><i></i>Shorts</div>
+        <div class="shorts">
+          <div class="short"><a href="/shorts/bbbbbbbbbb1"><div class="thumb" style="background:linear-gradient(160deg,#ff3d6a,#ffb199)"></div></a><div class="title">Wait for the end…</div><div class="sub">1.2M views</div></div>
+          <div class="short"><a href="/shorts/bbbbbbbbbb2"><div class="thumb" style="background:linear-gradient(160deg,#8e2de2,#4a00e0)"></div></a><div class="title">This trick changes everything</div><div class="sub">3.4M views</div></div>
+          <div class="short"><a href="/shorts/bbbbbbbbbb3"><div class="thumb" style="background:linear-gradient(160deg,#fc4a1a,#f7b733)"></div></a><div class="title">POV: it's 3am and you're still scrolling</div><div class="sub">890K views</div></div>
+          <div class="short"><a href="/shorts/bbbbbbbbbb4"><div class="thumb" style="background:linear-gradient(160deg,#00b09b,#96c93d)"></div></a><div class="title">Part 47 of 120</div><div class="sub">5.1M views</div></div>
+        </div>
+      </ytd-rich-shelf-renderer>
+      <ytd-rich-item-renderer><a href="/watch?v=aaaaaaaaaa4"><div class="thumb" style="background:linear-gradient(135deg,#654ea3,#eaafc8)"><span class="dur">9:58</span></div></a>
+        <div class="meta"><div class="av" style="background:#654ea3"></div><div><div class="title">How a mechanical watch keeps time</div><div class="sub">Gear Train · 1.1M views · 1 month ago</div></div></div></ytd-rich-item-renderer>
+      <ytd-rich-item-renderer><a href="/shorts/bbbbbbbbbb5"><div class="thumb" style="background:linear-gradient(135deg,#ff416c,#ff4b2b)"><span class="dur">SHORTS</span></div></a>
+        <div class="meta"><div class="av" style="background:#ff416c"></div><div><div class="title">You won't believe what happens next #shorts</div><div class="sub">Viral Daily · 7.8M views · 5 hours ago</div></div></div></ytd-rich-item-renderer>
+      <ytd-rich-item-renderer><a href="/watch?v=aaaaaaaaaa6"><div class="thumb" style="background:linear-gradient(135deg,#232526,#414345)"><span class="dur">41:17</span></div></a>
+        <div class="meta"><div class="av" style="background:#414345"></div><div><div class="title">Live jazz session: late night trio</div><div class="sub">Blue Room · 33K views · 4 days ago</div></div></div></ytd-rich-item-renderer>
+      <ytd-rich-item-renderer><a href="/watch?v=aaaaaaaaaa7"><div class="thumb" style="background:linear-gradient(135deg,#1d976c,#93f9b9)"><span class="dur">15:30</span></div></a>
+        <div class="meta"><div class="av" style="background:#1d976c"></div><div><div class="title">Fixing a bike chain in five minutes</div><div class="sub">Spoke &amp; Wrench · 64K views · 2 weeks ago</div></div></div></ytd-rich-item-renderer>
+      <ytd-rich-item-renderer><a href="/watch?v=aaaaaaaaaa8"><div class="thumb" style="background:linear-gradient(135deg,#c94b4b,#4b134f)"><span class="dur">22:03</span></div></a>
+        <div class="meta"><div class="av" style="background:#c94b4b"></div><div><div class="title">The history of the paperback novel</div><div class="sub">Shelf Life · 120K views · 6 days ago</div></div></div></ytd-rich-item-renderer>
+    </div>
+  </main>
+</div>
+</body>
+</html>
