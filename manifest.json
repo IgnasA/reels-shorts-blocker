@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Reels & Shorts Blocker",
   "version": "1.0.0",
-  "description": "Hides YouTube Shorts and Facebook Reels, and opens Shorts in the normal video player.",
+  "description": "Hides YouTube Shorts, Facebook Reels and Instagram Reels, and opens single Shorts and reels as normal videos.",
   "minimum_chrome_version": "105",
   "permissions": ["storage"],
   "icons": {
@@ -29,6 +29,12 @@
       "matches": ["https://*.facebook.com/*"],
       "css": ["content/facebook.css"],
       "js": ["settings.js", "urls.js", "content/facebook.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://*.instagram.com/*"],
+      "css": ["content/instagram.css"],
+      "js": ["settings.js", "urls.js", "content/instagram.js"],
       "run_at": "document_start"
     }
   ]

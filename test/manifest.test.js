@@ -5,6 +5,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 const { EXTENSION_FILES } = require("../scripts/package.js");
+const { read } = require("./helpers");
 
 const ROOT = path.join(__dirname, "..");
 const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "manifest.json"), "utf8"));
@@ -38,7 +39,7 @@ test("permissions are minimal", () => {
   assert.equal(manifest.web_accessible_resources, undefined);
   assert.equal(manifest.externally_connectable, undefined);
   for (const cs of manifest.content_scripts) {
-    for (const m of cs.matches) assert.match(m, /^\*:\/\/\*\.(youtube|facebook)\.com\/\*$/, m);
+    for (const m of cs.matches) assert.match(m, /^https:\/\/\*\.(youtube|facebook|instagram)\.com\/\*$/, m);
   }
 });
 
@@ -88,4 +89,14 @@ test("no file or folder name starts with an underscore (Chrome refuses to load t
 test("minimum Chrome version covers the features the extension relies on", () => {
   // CSS :has() (youtube.css) shipped in Chrome 105; the Navigation API in 102.
   assert.ok(Number(manifest.minimum_chrome_version) >= 105);
+});
+
+test("each content script loads settings.js and urls.js first", () => {
+  for (const cs of manifest.content_scripts) assert.deepEqual(cs.js.slice(0, 2), ["settings.js", "urls.js"]);
+});
+
+test("every setting has a popup switch and every switch a setting", () => {
+  const keys = [...read("popup/popup.html").matchAll(/data-key="(\w+)"/g)].map((m) => m[1]);
+  const defaults = Object.keys(vm.runInNewContext(`${read("settings.js")}; RSB_DEFAULTS`));
+  assert.deepEqual(keys.sort(), defaults.sort());
 });

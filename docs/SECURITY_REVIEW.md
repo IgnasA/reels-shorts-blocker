@@ -6,6 +6,14 @@
 **Method:** manual review of every source file, a grep for dangerous sinks and network APIs, and an
 end-to-end run of the unpacked extension in Chromium against stand-in pages (`tests/smoke.js`).
 
+> **Addendum (2026-10-22, release 1.0.0).** After this review, Instagram support was added
+> (`content/instagram.*`, content scripts on `https://*.instagram.com/*`, two more settings) and the
+> URL rules moved to `urls.js`. The Instagram script follows the same pattern as the Facebook one:
+> no network requests, no HTML from strings, same-origin redirects only. Its one new storage use is a
+> loop guard in the Instagram tab's `sessionStorage` (`rsb-ig-redirect`: last redirect target and
+> time), readable by Instagram's own scripts like the `data-rsb-*` attributes in finding #4. The
+> findings below describe the code as reviewed; #3 and #5 apply equally to `*.instagram.com`.
+
 ## Summary
 
 The extension has a small, sound attack surface. It asks for one API permission (`storage`), has
@@ -30,6 +38,7 @@ this branch; the rest are informational.
 | `storage` | `settings.js`, `popup/popup.js`: read and write four on/off settings | Yes |
 | Content scripts on `https://*.youtube.com/*` | `content/youtube.*` | Yes (see #3 on subdomain breadth) |
 | Content scripts on `https://*.facebook.com/*` | `content/facebook.*` | Yes (see #3) |
+| Content scripts on `https://*.instagram.com/*` (added after this review) | `content/instagram.*` | Yes |
 
 Not requested, and not needed: `host_permissions`, `tabs`, `activeTab`, `scripting`, `webRequest`,
 `declarativeNetRequest`, `cookies`, `history`. There is no background service worker, no

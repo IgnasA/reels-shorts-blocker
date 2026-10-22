@@ -2,7 +2,8 @@
 
 Last checked against the live sites on 2026-10-21 (logged out, en-US, from a
 headless Chromium with the extension loaded). The extension runs only on
-`*.youtube.com` and `*.facebook.com`. Instagram and TikTok aren't supported.
+`*.youtube.com`, `*.facebook.com` and `*.instagram.com` (Instagram added afterwards; see its
+section). TikTok isn't supported.
 
 Status:
 - **verified live**: seen working on the live site on the date above
@@ -57,6 +58,22 @@ live. `test/fixtures/facebook.html` is a hand-written stand-in, not a capture.
 If a Reel post slips through on Facebook, open DevTools on it, find the
 `a[data-rsb-seen]` inside it and walk up to see which ancestor should match
 in `containerFor()`.
+
+## Instagram (`content/instagram.js`)
+
+Added after the live check above. Instagram needs a login for most pages, so
+the hiding is covered only by `test/fixtures/instagram.html` (hand-written)
+and the jsdom tests in `test/instagram.test.js`.
+
+| Behaviour | Status | Fragility |
+| --- | --- | --- |
+| `/reel/<code>` → `/p/<code>/`; `/reels/…` → `/`; `/<user>/reels/` → `/<user>/` (`rsbInstagramRedirect` in `urls.js`) | fixture / unit | low |
+| Links matching `/reel/`, `/reels/`, `…/reels` are found and their container marked `data-rsb-hidden` | not verifiable / fixture | low for the link test |
+| Container = closest `article` or `[role="tab"]`, else the link itself | not verifiable / fixture | high: keyed to Instagram's page structure |
+
+Unlike the Facebook script, the Instagram one rescans the document once per
+frame for unseen links and doesn't watch `href` changes; port the Facebook
+approach if a Reel link that changes its `href` after insertion slips through.
 
 ## Performance
 

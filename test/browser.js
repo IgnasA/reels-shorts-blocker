@@ -1,5 +1,5 @@
 // Launches Chromium with the packaged extension loaded and answers every
-// request to YouTube/Facebook with a local fixture page, so the real content
+// request to YouTube/Facebook/Instagram with a local fixture page, so the real content
 // scripts run against known markup without touching the network.
 const crypto = require("node:crypto");
 const fs = require("node:fs");
@@ -21,6 +21,7 @@ function fixtureFor(url) {
   const { hostname } = new URL(url);
   if (/(^|\.)youtube\.com$/.test(hostname)) return hostname.startsWith("m.") ? "youtube-mobile.html" : "youtube.html";
   if (/(^|\.)facebook\.com$/.test(hostname)) return "facebook.html";
+  if (/(^|\.)instagram\.com$/.test(hostname)) return "instagram.html";
   return null;
 }
 

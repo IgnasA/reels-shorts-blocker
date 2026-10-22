@@ -1,11 +1,14 @@
 // End-to-end smoke test: loads the unpacked extension in Chromium and serves
 // small stand-in pages for youtube.com / facebook.com, so no network or
-// account is needed. Run with `node tests/smoke.js` (see README).
+// account is needed. Run with `npm run test:smoke` (see README).
 
 const assert = require("node:assert/strict");
 const crypto = require("node:crypto");
+const fs = require("node:fs");
+const os = require("node:os");
 const path = require("node:path");
 const { execSync } = require("node:child_process");
+const { stage } = require("../scripts/package.js");
 
 function loadPlaywright() {
   try {
@@ -17,7 +20,10 @@ function loadPlaywright() {
 }
 
 const { chromium } = loadPlaywright();
-const EXT = path.resolve(__dirname, "..");
+// Load the packaged file set, not the repository: node_modules and other
+// dev files would otherwise end up inside the unpacked extension.
+const EXT = stage(fs.mkdtempSync(path.join(os.tmpdir(), "rsb-smoke-")));
+process.on("exit", () => fs.rmSync(EXT, { recursive: true, force: true }));
 
 // Chrome derives an unpacked extension's ID from its absolute path.
 const EXT_ID = [...crypto.createHash("sha256").update(EXT).digest("hex").slice(0, 32)]
@@ -41,8 +47,9 @@ const display = (page, sel) => page.$eval(sel, (e) => getComputedStyle(e).displa
 async function main() {
   const ctx = await chromium.launchPersistentContext("", {
     headless: true,
-    executablePath: process.env.CHROMIUM_PATH || undefined,
-    args: [`--disable-extensions-except=${EXT}`, `--load-extension=${EXT}`, "--headless=new"],
+    // The full browser: Playwright's default headless shell can't load extensions.
+    ...(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : { channel: "chromium" }),
+    args: [`--disable-extensions-except=${EXT}`, `--load-extension=${EXT}`],
   });
   const html = (body) => (route) => route.fulfill({ contentType: "text/html", body });
   await ctx.route("https://www.youtube.com/**", html(YT_PAGE));
