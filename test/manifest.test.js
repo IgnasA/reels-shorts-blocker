@@ -45,7 +45,7 @@ test("permissions are minimal", () => {
 
 test("icons exist at the declared sizes", () => {
   const all = { ...manifest.icons, ...manifest.action.default_icon };
-  assert.ok(manifest.icons["128"], "a 128px icon is required by the store");
+  assert.deepEqual(Object.keys(manifest.icons).sort(), ["128", "16", "32", "48"], "icons at 16/32/48/128");
   for (const [size, file] of Object.entries(all)) {
     assert.deepEqual(pngSize(file), [Number(size), Number(size)], file);
   }

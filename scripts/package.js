@@ -13,7 +13,9 @@ const EXTENSION_FILES = ["manifest.json", "settings.js", "urls.js", "content", "
 function stage(dest) {
   fs.rmSync(dest, { recursive: true, force: true });
   fs.mkdirSync(dest, { recursive: true });
-  for (const f of EXTENSION_FILES) fs.cpSync(path.join(ROOT, f), path.join(dest, f), { recursive: true });
+  // OS clutter (.DS_Store, Thumbs.db) and other dotfiles never ship.
+  const filter = (src) => !/^(\.|Thumbs\.db$)/.test(path.basename(src));
+  for (const f of EXTENSION_FILES) fs.cpSync(path.join(ROOT, f), path.join(dest, f), { recursive: true, filter });
   return dest;
 }
 
