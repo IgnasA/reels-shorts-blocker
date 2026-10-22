@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- Trimmed-down copy of the markup YouTube served (desktop, logged out,
+     October 2026) on the home, search, channel and watch pages. Only the
+     tags, attributes and nesting the blocker relies on are kept.
+     data-expect says what the test expects with "Hide Shorts" on. -->
+<html lang="en">
+<head><meta charset="utf-8"><title>YouTube fixture</title></head>
+<body>
+<ytd-app>
+  <!-- Mini guide (collapsed sidebar) -->
+  <ytd-mini-guide-renderer>
+    <ytd-mini-guide-entry-renderer data-expect="visible" data-name="mini guide Home"><a href="/" title="Home">Home</a></ytd-mini-guide-entry-renderer>
+    <ytd-mini-guide-entry-renderer data-expect="hidden" data-name="mini guide Shorts"><a href="/shorts/" title="Shorts">Shorts</a></ytd-mini-guide-entry-renderer>
+    <ytd-mini-guide-entry-renderer aria-label="Shorts" data-expect="hidden" data-name="mini guide Shorts (aria-label only)"><a title="Shorts">Shorts</a></ytd-mini-guide-entry-renderer>
+  </ytd-mini-guide-renderer>
+
+  <!-- Full guide -->
+  <ytd-guide-section-renderer>
+    <ytd-guide-entry-renderer data-expect="visible" data-name="guide Subscriptions"><a href="/feed/subscriptions" title="Subscriptions">Subscriptions</a></ytd-guide-entry-renderer>
+    <ytd-guide-entry-renderer data-expect="hidden" data-name="guide Shorts"><a title="Shorts">Shorts</a></ytd-guide-entry-renderer>
+  </ytd-guide-section-renderer>
+
+  <!-- Search filter chips -->
+  <yt-chip-cloud-renderer>
+    <yt-chip-cloud-chip-renderer data-expect="visible" data-name="chip All"><chip-shape><button role="tab"><div>All</div></button></chip-shape></yt-chip-cloud-chip-renderer>
+    <yt-chip-cloud-chip-renderer id="chip-shorts" data-expect="hidden" data-name="chip Shorts"><chip-shape><button role="tab"><div> Shorts </div></button></chip-shape></yt-chip-cloud-chip-renderer>
+    <yt-chip-cloud-chip-renderer id="chip-videos" data-expect="visible" data-name="chip Videos"><chip-shape><button role="tab"><div>Videos</div></button></chip-shape></yt-chip-cloud-chip-renderer>
+  </yt-chip-cloud-renderer>
+
+  <!-- Home: rich grid -->
+  <ytd-rich-grid-renderer id="home">
+    <ytd-rich-item-renderer data-expect="visible" data-name="home video"><a href="/watch?v=dQw4w9WgXcQ">A normal video</a></ytd-rich-item-renderer>
+    <ytd-rich-item-renderer data-expect="hidden" data-name="home Short item"><a href="/shorts/sjw42ZJ1OE8">A Short</a></ytd-rich-item-renderer>
+    <ytd-rich-section-renderer data-expect="hidden" data-name="home Shorts shelf (is-shorts)">
+      <ytd-rich-shelf-renderer is-shorts><span>Shorts</span></ytd-rich-shelf-renderer>
+    </ytd-rich-section-renderer>
+    <ytd-rich-section-renderer data-expect="hidden" data-name="home Shorts shelf (lockups)">
+      <div><ytm-shorts-lockup-view-model-v2><ytm-shorts-lockup-view-model><a href="/shorts/M93h41hyPsM">Short</a></ytm-shorts-lockup-view-model></ytm-shorts-lockup-view-model-v2></div>
+    </ytd-rich-section-renderer>
+    <ytd-rich-section-renderer data-expect="visible" data-name="home non-Shorts section"><span>Breaking news</span></ytd-rich-section-renderer>
+  </ytd-rich-grid-renderer>
+
+  <!-- Search results -->
+  <ytd-section-list-renderer id="search">
+    <ytd-item-section-renderer>
+      <ytd-video-renderer data-expect="visible" data-name="search video"><a href="/watch?v=dQw4w9WgXcQ">Video</a></ytd-video-renderer>
+      <ytd-video-renderer data-expect="hidden" data-name="search Short (link)"><a href="/shorts/sjw42ZJ1OE8">Short</a></ytd-video-renderer>
+      <ytd-video-renderer data-expect="hidden" data-name="search Short (overlay)"><a href="/watch?v=abcdefghijk">Short</a><ytd-thumbnail-overlay-time-status-renderer overlay-style="SHORTS"></ytd-thumbnail-overlay-time-status-renderer></ytd-video-renderer>
+      <grid-shelf-view-model data-expect="hidden" data-name="search Shorts grid shelf">
+        <yt-section-header-view-model>Shorts</yt-section-header-view-model>
+        <div><div><div><ytm-shorts-lockup-view-model-v2><ytm-shorts-lockup-view-model><a href="/shorts/sjw42ZJ1OE8">Short</a><h3><a href="/shorts/sjw42ZJ1OE8">Title</a></h3></ytm-shorts-lockup-view-model></ytm-shorts-lockup-view-model-v2></div></div></div>
+      </grid-shelf-view-model>
+      <ytd-reel-shelf-renderer data-expect="hidden" data-name="search reel shelf"><span>Shorts</span></ytd-reel-shelf-renderer>
+      <ytd-shelf-renderer data-expect="visible" data-name="search normal shelf"><a href="/watch?v=dQw4w9WgXcQ">Shelf</a></ytd-shelf-renderer>
+    </ytd-item-section-renderer>
+  </ytd-section-list-renderer>
+
+  <!-- Channel tabs -->
+  <yt-tab-group-shape>
+    <yt-tab-shape tab-title="Videos" data-expect="visible" data-name="tab Videos"><div>Videos</div></yt-tab-shape>
+    <yt-tab-shape tab-title="Shorts" data-expect="hidden" data-name="tab Shorts"><div>Shorts</div></yt-tab-shape>
+  </yt-tab-group-shape>
+  <ytd-grid-renderer>
+    <ytd-grid-video-renderer data-expect="visible" data-name="grid video"><a href="/watch?v=dQw4w9WgXcQ">Video</a></ytd-grid-video-renderer>
+    <ytd-grid-video-renderer data-expect="hidden" data-name="grid Short"><a href="/shorts/sjw42ZJ1OE8">Short</a></ytd-grid-video-renderer>
+  </ytd-grid-renderer>
+
+  <!-- Watch page sidebar and playlists -->
+  <ytd-watch-next-secondary-results-renderer>
+    <yt-lockup-view-model data-expect="visible" data-name="sidebar video"><a href="/watch?v=dQw4w9WgXcQ">Up next</a></yt-lockup-view-model>
+    <yt-lockup-view-model data-expect="hidden" data-name="sidebar Short"><a href="/shorts/sjw42ZJ1OE8">Short</a></yt-lockup-view-model>
+    <ytd-compact-video-renderer data-expect="hidden" data-name="compact Short"><a href="/shorts/sjw42ZJ1OE8">Short</a></ytd-compact-video-renderer>
+  </ytd-watch-next-secondary-results-renderer>
+  <ytd-playlist-video-renderer data-expect="hidden" data-name="playlist Short"><a href="/shorts/sjw42ZJ1OE8">Short</a></ytd-playlist-video-renderer>
+
+  <a id="shorts-link" href="/shorts/sjw42ZJ1OE8?t=7">Open a Short</a>
+  <a id="tab-link" href="/@SomeChannel/shorts">Channel Shorts tab</a>
+</ytd-app>
+</body>
+</html>

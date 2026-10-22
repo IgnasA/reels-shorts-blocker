@@ -1,0 +1,24 @@
+<!doctype html>
+<!-- Trimmed-down m.youtube.com markup (October 2026, logged out). -->
+<html lang="en">
+<head><meta charset="utf-8"><title>YouTube mobile fixture</title></head>
+<body>
+<ytm-app>
+  <ytm-section-list-renderer>
+    <ytm-item-section-renderer>
+      <ytm-video-with-context-renderer data-expect="visible" data-name="mobile video"><ytm-media-item><a href="/watch?v=dQw4w9WgXcQ">Video</a></ytm-media-item></ytm-video-with-context-renderer>
+      <ytm-video-with-context-renderer data-expect="hidden" data-name="mobile Short singleton"><ytm-media-item class="big-shorts-singleton"><a href="/shorts/sjw42ZJ1OE8">Short</a></ytm-media-item></ytm-video-with-context-renderer>
+      <grid-shelf-view-model data-expect="hidden" data-name="mobile Shorts grid shelf"><div><ytm-shorts-lockup-view-model><a href="/shorts/M93h41hyPsM">Short</a></ytm-shorts-lockup-view-model></div></grid-shelf-view-model>
+      <ytm-reel-shelf-renderer data-expect="hidden" data-name="mobile reel shelf"><span>Shorts</span></ytm-reel-shelf-renderer>
+    </ytm-item-section-renderer>
+    <ytm-rich-item-renderer data-expect="hidden" data-name="mobile rich Short"><a href="/shorts/sjw42ZJ1OE8">Short</a></ytm-rich-item-renderer>
+    <ytm-rich-section-renderer data-expect="hidden" data-name="mobile rich Shorts section"><ytm-shorts-lockup-view-model-v2><a href="/shorts/sjw42ZJ1OE8">Short</a></ytm-shorts-lockup-view-model-v2></ytm-rich-section-renderer>
+  </ytm-section-list-renderer>
+  <ytm-pivot-bar-renderer>
+    <ytm-pivot-bar-item-renderer data-expect="visible" data-name="pivot Home"><div role="tab" class="pivot-bar-item-tab pivot-w2w">Home</div></ytm-pivot-bar-item-renderer>
+    <ytm-pivot-bar-item-renderer data-expect="hidden" data-name="pivot Shorts"><div role="tab" class="pivot-bar-item-tab pivot-shorts">Shorts</div></ytm-pivot-bar-item-renderer>
+    <ytm-pivot-bar-item-renderer data-expect="visible" data-name="pivot You"><div role="tab" class="pivot-bar-item-tab pivot-you">You</div></ytm-pivot-bar-item-renderer>
+  </ytm-pivot-bar-renderer>
+</ytm-app>
+</body>
+</html>
