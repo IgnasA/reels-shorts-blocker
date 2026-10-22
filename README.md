@@ -1,5 +1,7 @@
 # Reels & Shorts Blocker
 
+[![CI](https://github.com/ignasa/reels-shorts-blocker/actions/workflows/ci.yml/badge.svg)](https://github.com/ignasa/reels-shorts-blocker/actions/workflows/ci.yml)
+
 Chrome extension (Manifest V3) that hides YouTube Shorts and Facebook Reels.
 
 ## Install
