@@ -37,6 +37,8 @@ document.addEventListener(
     if (!settings.ytRedirectShorts || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
     const link = e.target.closest?.('a[href*="/shorts/"]');
     if (!link) return;
+    // Only YouTube's own links: an off-site URL that happens to contain
+    // /shorts/ must open where it points, not as a YouTube video.
     const target = new URL(link.href, location.href);
     const url = target.origin === location.origin && rsbShortsWatchUrl(target.pathname, target.search);
     if (!url) return;
