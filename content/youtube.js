@@ -2,32 +2,30 @@
 // hides the "Shorts" filter chip (only identifiable by its text), and sends
 // /shorts/<id> to the regular /watch player.
 
-const SHORTS_PATH = /^\/shorts\/([\w-]+)/;
 let settings = { ...RSB_DEFAULTS };
+let loaded = false;
 
-function watchUrlFor(path) {
-  const m = path.match(SHORTS_PATH);
-  return m ? `/watch?v=${m[1]}` : null;
-}
-
+// Redirects wait for the stored settings (see rsbWatchSettings).
 function redirectIfShorts() {
-  if (!settings.ytRedirectShorts) return;
-  const url = watchUrlFor(location.pathname);
+  if (!loaded) return;
+  const url =
+    (settings.ytRedirectShorts && rsbShortsWatchUrl(location.pathname, location.search)) ||
+    (settings.ytHideShorts && rsbShortsTabRedirect(location.pathname));
   if (url) location.replace(url);
 }
 
+// YouTube reuses chip elements when the chip bar changes, so the label is
+// checked on every pass rather than once per element. There are only a few.
 function hideShortsChips() {
-  const chips = document.querySelectorAll(
-    "yt-chip-cloud-chip-renderer:not([data-rsb-seen]), chip-shape:not([data-rsb-seen])"
-  );
-  for (const chip of chips) {
-    chip.setAttribute("data-rsb-seen", "");
-    if (chip.textContent.trim() === "Shorts") chip.setAttribute("data-rsb-hidden", "");
+  for (const chip of document.querySelectorAll("yt-chip-cloud-chip-renderer, chip-shape")) {
+    const isShorts = chip.textContent.trim() === "Shorts";
+    if (isShorts !== chip.hasAttribute("data-rsb-hidden")) chip.toggleAttribute("data-rsb-hidden", isShorts);
   }
 }
 
-rsbWatchSettings((next) => {
+rsbWatchSettings((next, fromStorage) => {
   settings = next;
+  loaded ||= fromStorage;
   rsbSetFlag("data-rsb-yt-shorts", settings.ytHideShorts);
   redirectIfShorts();
 });
@@ -38,7 +36,11 @@ document.addEventListener(
   (e) => {
     if (!settings.ytRedirectShorts || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey) return;
     const link = e.target.closest?.('a[href*="/shorts/"]');
-    const url = link && watchUrlFor(new URL(link.href, location.href).pathname);
+    if (!link) return;
+    // Only YouTube's own links: an off-site URL that happens to contain
+    // /shorts/ must open where it points, not as a YouTube video.
+    const target = new URL(link.href, location.href);
+    const url = target.origin === location.origin && rsbShortsWatchUrl(target.pathname, target.search);
     if (!url) return;
     e.preventDefault();
     e.stopImmediatePropagation();
@@ -47,9 +49,9 @@ document.addEventListener(
   true
 );
 
-// Fallback for any other in-app navigation (back/forward, swipes, etc.).
+// Any other in-app navigation (back/forward, swipes, router pushes).
+rsbWatchUrl(redirectIfShorts);
 document.addEventListener("yt-navigate-finish", redirectIfShorts);
-window.addEventListener("popstate", redirectIfShorts);
 
 let scheduled = false;
 new MutationObserver(() => {

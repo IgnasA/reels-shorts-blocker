@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- Hand-written stand-in for Instagram's markup. Instagram needs a login to
+     show a feed, so this mirrors the structure the blocker relies on (article,
+     role="tab" and link paths) rather than a live capture.
+     data-expect says what the test expects with "Hide Reels" on. -->
+<html lang="en">
+<head><meta charset="utf-8"><title>Instagram fixture</title></head>
+<body>
+<nav>
+  <div data-expect="visible" data-name="nav Home"><a href="/">Home</a></div>
+  <a data-expect="hidden" data-name="nav Reels" href="/reels/">Reels</a>
+  <div data-expect="visible" data-name="nav Explore"><a href="/explore/">Explore</a></div>
+</nav>
+<main role="main">
+  <div id="feed">
+    <article data-expect="visible" data-name="photo post"><div><a href="/p/PHOTO1/">A photo post</a></div></article>
+    <article data-expect="hidden" data-name="Reel post"><div><div><a href="/reel/REEL1/">A Reel</a></div></div></article>
+  </div>
+  <div role="tablist">
+    <a role="tab" data-expect="visible" data-name="profile tab Posts" href="/some.user/">Posts</a>
+    <div role="tab" data-expect="hidden" data-name="profile tab Reels"><a href="/some.user/reels/">Reels</a></div>
+  </div>
+  <div class="grid">
+    <a data-expect="visible" data-name="grid photo" href="/p/PHOTO2/">photo</a>
+    <a data-expect="hidden" data-name="grid Reel" href="/reel/REEL2/">reel</a>
+  </div>
+</main>
+</body>
+</html>

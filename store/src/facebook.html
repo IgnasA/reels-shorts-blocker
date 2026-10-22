@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- Stand-in for a social feed, used only to render the store screenshots
+     (scripts/store-images.js). It has the roles and link paths the
+     extension's Facebook script keys off, with made-up people and no logos. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Feed</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.4 Inter, sans-serif; color: #1c1e21; background: #f0f2f5; }
+  a { color: inherit; text-decoration: none; }
+  header { height: 56px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.1); display: flex; align-items: center; padding: 0 16px; gap: 12px; }
+  .site { font-weight: 700; font-size: 17px; color: #333; }
+  .search { width: 220px; height: 36px; border-radius: 18px; background: #f0f2f5; color: #65676b; display: flex; align-items: center; padding: 0 14px; }
+  .layout { display: flex; gap: 24px; padding: 16px; }
+  [role="navigation"] { width: 170px; flex: none; }
+  [role="navigation"] ul { list-style: none; margin: 0; padding: 0; }
+  [role="navigation"] li a { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 8px; font-weight: 500; }
+  .ico { width: 28px; height: 28px; border-radius: 50%; flex: none; }
+  [role="main"] { flex: 1; max-width: 520px; }
+  .post { background: #fff; border-radius: 10px; box-shadow: 0 1px 2px rgba(0,0,0,.1); margin-bottom: 16px; overflow: hidden; }
+  .head { display: flex; gap: 10px; align-items: center; padding: 12px 14px 8px; }
+  .av { width: 40px; height: 40px; border-radius: 50%; color: #fff; font-weight: 700; display: grid; place-items: center; flex: none; }
+  .name { font-weight: 600; }
+  .when { color: #65676b; font-size: 12.5px; }
+  .text { padding: 0 14px 10px; }
+  .img { height: 210px; }
+  .actions { display: flex; justify-content: space-around; border-top: 1px solid #e4e6eb; margin: 0 14px; padding: 8px 0; color: #65676b; font-weight: 600; font-size: 13px; }
+  .shelf-title { font-weight: 700; font-size: 16px; padding: 12px 14px 10px; }
+  .reels { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 14px 14px; }
+  .reel { aspect-ratio: 9 / 16; border-radius: 10px; display: flex; align-items: flex-end; padding: 8px; color: #fff; font-weight: 600; font-size: 12px; }
+  .reel-post .img { height: 300px; display: grid; place-items: center; color: #fff; font-weight: 700; }
+</style>
+</head>
+<body>
+<header><div class="site">Social feed</div><div class="search">Search</div></header>
+<div class="layout">
+  <div role="navigation"><ul>
+    <li><a href="/me"><span class="ico" style="background:#7b61ff"></span>Your profile</a></li>
+    <li><a href="/friends/"><span class="ico" style="background:#1877f2"></span>Friends</a></li>
+    <li><a href="/reels/"><span class="ico" style="background:#ff3d6a"></span>Reels</a></li>
+    <li><a href="/groups/"><span class="ico" style="background:#00a400"></span>Groups</a></li>
+    <li><a href="/events/"><span class="ico" style="background:#f02849"></span>Events</a></li>
+  </ul></div>
+  <div role="main">
+    <div role="feed">
+      <div class="post">
+        <div class="head"><div class="av" style="background:#e67e22">MR</div><div><div class="name"><a href="/maria.r/posts/1">Maria Ruiz</a></div><div class="when">2 h</div></div></div>
+        <div class="text">Finally finished the bookshelf! Three weekends, one splinter, zero regrets.</div>
+        <div class="img" style="background:linear-gradient(135deg,#c79081,#dfa579)"></div>
+        <div class="actions"><span>Like</span><span>Comment</span><span>Share</span></div>
+      </div>
+      <div class="post">
+        <div class="shelf-title">Reels and short videos</div>
+        <div class="reels">
+          <a class="reel" href="/reel/100001/" style="background:linear-gradient(160deg,#ff3d6a,#ffb199)">2.1M</a>
+          <a class="reel" href="/reel/100002/" style="background:linear-gradient(160deg,#8e2de2,#4a00e0)">980K</a>
+          <a class="reel" href="/reel/100003/" style="background:linear-gradient(160deg,#fc4a1a,#f7b733)">4.4M</a>
+          <a class="reel" href="/reel/100004/" style="background:linear-gradient(160deg,#00b09b,#96c93d)">1.3M</a>
+        </div>
+      </div>
+      <div class="post">
+        <div class="head"><div class="av" style="background:#2980b9">JK</div><div><div class="name"><a href="/jkim/posts/2">Jonah Kim</a></div><div class="when">5 h</div></div></div>
+        <div class="text">Anyone up for a board game night on Friday? I'll bring snacks.</div>
+        <div class="actions"><span>Like</span><span>Comment</span><span>Share</span></div>
+      </div>
+      <div class="post reel-post">
+        <div class="head"><div class="av" style="background:#8e44ad">VD</div><div><div class="name">Viral Daily</div><div class="when">Reel · 1 d</div></div></div>
+        <a href="/reel/100005/"><div class="img" style="background:linear-gradient(160deg,#ff416c,#ff4b2b)">▶ Reel</div></a>
+        <div class="actions"><span>Like</span><span>Comment</span><span>Share</span></div>
+      </div>
+      <div class="post">
+        <div class="head"><div class="av" style="background:#16a085">AL</div><div><div class="name"><a href="/ana.l/posts/3">Ana Lopes</a></div><div class="when">Yesterday</div></div></div>
+        <div class="text">Sunset at the lake. No filter needed.</div>
+        <div class="img" style="background:linear-gradient(180deg,#f8b500,#fc4a1a 60%,#4b134f)"></div>
+        <div class="actions"><span>Like</span><span>Comment</span><span>Share</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

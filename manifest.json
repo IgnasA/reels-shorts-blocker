@@ -2,10 +2,12 @@
   "manifest_version": 3,
   "name": "Reels & Shorts Blocker",
   "version": "1.0.0",
-  "description": "Hides YouTube Shorts and Facebook Reels.",
+  "description": "Hides YouTube Shorts, Facebook Reels and Instagram Reels, and opens single Shorts and reels as normal videos.",
+  "minimum_chrome_version": "105",
   "permissions": ["storage"],
   "icons": {
     "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
@@ -14,20 +16,27 @@
     "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
       "48": "icons/icon48.png"
     }
   },
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/*"],
+      "matches": ["https://*.youtube.com/*"],
       "css": ["content/youtube.css"],
-      "js": ["settings.js", "content/youtube.js"],
+      "js": ["settings.js", "urls.js", "content/youtube.js"],
       "run_at": "document_start"
     },
     {
-      "matches": ["*://*.facebook.com/*"],
+      "matches": ["https://*.facebook.com/*"],
       "css": ["content/facebook.css"],
-      "js": ["settings.js", "content/facebook.js"],
+      "js": ["settings.js", "urls.js", "content/facebook.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://*.instagram.com/*"],
+      "css": ["content/instagram.css"],
+      "js": ["settings.js", "urls.js", "content/instagram.js"],
       "run_at": "document_start"
     }
   ]
