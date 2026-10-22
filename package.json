@@ -4,7 +4,7 @@
   "description": "Development tooling only; the extension itself has no dependencies or build step.",
   "scripts": {
     "test": "node --test test/*.test.js",
-    "test:unit": "node --test test/urls.test.js test/manifest.test.js test/redirects.test.js test/instagram.test.js",
+    "test:unit": "node --test test/urls.test.js test/manifest.test.js test/redirects.test.js test/instagram.test.js test/store.test.js",
     "test:smoke": "node tests/smoke.js",
     "package": "node scripts/package.js",
     "store:images": "node scripts/store-images.js"
