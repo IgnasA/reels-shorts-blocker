@@ -99,8 +99,8 @@ property*). What was checked, and what's left for you to decide:
 
 | Item | Risk | Notes |
 |---|---|---|
-| **Icon** | **Medium. Your call before submitting.** | The icon is a red rounded square with a white play triangle, crossed out. Even with the slash, that is close to YouTube's own logo (white play button on a red rounded rectangle). A reviewer or Google's brand team could see it as using YouTube's logo. The lowest-risk fix is to change the colour (for example charcoal, purple or teal) and/or the glyph (for example a crossed-out vertical phone-shaped frame), then re-run `npm run store:images` so the promo tile and screenshots pick it up. Many approved extensions in this niche use similar red icons, so it may well pass as is, but this is the single most likely trademark objection in this package. |
+| Icon | Low | Three upright reel frames with dotted borders, each crossed out, in white and coral on a dark slate tile. No play button, no platform colours or shapes. Drawn from code in `scripts/icons.js` (`npm run icons`). |
 | Name "Reels & Shorts Blocker" | Low | "Reels" and "Shorts" are feature names of Meta and YouTube, used here descriptively for what gets blocked. The name doesn't contain "YouTube", "Facebook", "Instagram", "Meta" or "Google", which is where most name rejections come from. Don't add them to the name (for example "YouTube Shorts Blocker"). |
 | Description | Low | Names the three sites only to say where the extension works (nominative use), once per site in the feature list plus the privacy note, with no keyword stuffing. Ends with the "not affiliated with or endorsed by" disclaimer and a trademark notice. |
 | Screenshots | Low | Stand-in pages with no logos, wordmarks or brand colours of the sites; the sites are named only in the captions. The popup's section headings ("YouTube", "Facebook", "Instagram") are plain text. |
-| Promo tile | Low | Uses only the extension's own icon, name and colours. No Meta or Google logos. Carries the same icon caveat as above. |
+| Promo tile | Low | Uses only the extension's own icon, name and colours. No Meta or Google logos. Uses the same slate colours as the icon. |
